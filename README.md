@@ -105,6 +105,36 @@ Comparativa de qué preserva y qué elimina cada plataforma al reenviar una mism
 
 ---
 
+## Evidencia del laboratorio
+
+Capturas propias del análisis, tomadas durante la investigación del caso PEGASUS01.
+
+**Identificación del equipo en el Registro de Windows (MiTeC Registry Recovery) — máquina PEGASUS01, Windows 10 Enterprise:**
+![Registro del sistema](dfir-registro-sistema.png)
+
+**Contenido de la imagen de disco montada — herramientas del atacante presentes en el sistema (nbtscan, xCmd.exe, WMIBackdoor.ps1):**
+![Listado de disco](dfir-listado-disco.png)
+
+**Ficheros sospechosos localizados en el sistema:**
+![Ficheros sospechosos](dfir-ficheros-sospechosos.png)
+
+**Resumen de detecciones tras el triage — 107 eventos con hallazgos sobre 40.549 (reducción del 99,78%):**
+![Resumen de eventos](dfir-eventos-resumen.png)
+
+**Artefacto en la carpeta de Descargas — instalador de TeamViewer empleado como canal de acceso remoto:**
+![Artefacto TeamViewer](dfir-artefacto-descargas.png)
+
+**Extracción del hash NTLM de la cuenta IEUser:**
+![Hash NTLM](dfir-hash-ntlm.png)
+
+**Cracking del hash NTLM con un password hash cracker:**
+![Cracking de hash](dfir-cracking-hash.png)
+
+**Análisis de otro artefacto en VirusTotal (58 detecciones):**
+![VirusTotal](dfir-virustotal-2.png)
+
+---
+
 ## Errores comunes evitados
 
 - **Analizar el original** → siempre sobre copia verificada por hash; el original se preserva.
