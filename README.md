@@ -69,7 +69,7 @@ Reconstrucción de la cadena de ataque completa a partir de la evidencia:
 | **Escalación** | `svchost.exe` malicioso ejecutado desde una cuenta de usuario | Volatility |
 | **Exfiltración** | Canal C2 ESTABLISHED hacia servidor externo | Volatility netscan |
 
-**Hallazgo de triage:** de 40.549 eventos, Hayabusa redujo a 107 con hallazgos relevantes (−99,78%) — el valor de un triage automatizado antes del análisis manual.
+**Hallazgo de triage:** de 48.549 eventos, Hayabusa redujo a 107 con hallazgos relevantes (−99,78%) — el valor de un triage automatizado antes del análisis manual.
 
 ---
 
@@ -118,7 +118,7 @@ Capturas propias del análisis, tomadas durante la investigación del caso PEGAS
 **Ficheros sospechosos localizados en el sistema:**
 ![Ficheros sospechosos](dfir-ficheros-sospechosos.png)
 
-**Resumen de detecciones tras el triage — 107 eventos con hallazgos sobre 40.549 (reducción del 99,78%):**
+**Resumen de detecciones tras el triage — 107 eventos con hallazgos sobre 48.549 (reducción del 99,78%):**
 ![Resumen de eventos](dfir-eventos-resumen.png)
 
 **Artefacto en la carpeta de Descargas — instalador de TeamViewer empleado como canal de acceso remoto:**
