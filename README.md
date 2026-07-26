@@ -62,7 +62,7 @@ Reconstrucción de la cadena de ataque completa a partir de la evidencia:
 
 | Vector | Evidencia | Herramienta |
 |---|---|---|
-| **Acceso inicial** | Credenciales débiles (usuario administrador con contraseña `qwerty`) | Mimikatz + hash cracker |
+| **Acceso inicial** | Cuenta `IEUser` (miembro de Administrators) con contraseña trivial `qwerty` | Mimikatz + crackstation |
 | **Herramientas de ataque** | Kit completo en `C:\TMP` (nbtscan, xCmd, WMIBackdoor.ps1) | FTK Imager + Hayabusa |
 | **Puerta trasera** | TeamViewer instalado; sesión entrante registrada en `Connections_incoming.txt` | PECmd + análisis de artefacto |
 | **Movimiento lateral** | Event ID 4648 — acceso SMB (445) desde IP interna atacante | EvtxECmd |
@@ -124,11 +124,11 @@ Capturas propias del análisis, tomadas durante la investigación del caso PEGAS
 **Artefacto en la carpeta de Descargas — instalador de TeamViewer empleado como canal de acceso remoto:**
 ![Artefacto TeamViewer](dfir-artefacto-descargas.png)
 
-**Extracción del hash NTLM de la cuenta IEUser:**
-![Hash NTLM](dfir-hash-ntlm.png)
+**Extracción del hash NTLM de la cuenta IEUser con Mimikatz (hives SAM/SYSTEM) — hash validado en crackstation, contraseña en claro `qwerty`:**
+![Hash NTLM de IEUser](dfir-cracking-hash.png)
 
-**Cracking del hash NTLM con un password hash cracker:**
-![Cracking de hash](dfir-cracking-hash.png)
+**Recuperación de un fichero borrado desde la Papelera ($Recycle.Bin) — `cosas.zip` eliminado del sistema, artefacto de la actividad del atacante:**
+![Fichero borrado recuperado](dfir-hash-ntlm.png)
 
 **Análisis de otro artefacto en VirusTotal (58 detecciones):**
 ![VirusTotal](dfir-virustotal-2.png)
