@@ -46,13 +46,13 @@ Orden de artefactos seguido sobre la imagen NTFS:
 
 1. **Montaje + hash** — FTK Imager en modo lectura; SHA-256 calculado antes de tocar nada (cadena de custodia).
 2. **Identificación del sistema** — nombre de equipo, zona horaria, versión y usuarios (hives SYSTEM/SOFTWARE/SAM). Se reproducen los *transaction logs* si el hive está "dirty".
-3. **Timeline** — `$MFT` con MFTECmd + supertimeline con log2timeline/plaso; búsqueda de ejecutables en rutas inusuales y accesos masivos (exfiltración).
+3. **Timeline** — reconstrucción cronológica a partir de la `$MFT` (la *Master File Table*: el índice que NTFS mantiene de cada archivo del disco, con sus fechas) con MFTECmd, más una supertimeline con log2timeline/plaso; se buscan ejecutables en rutas inusuales y accesos masivos (señal de exfiltración).
 4. **Ejecución de programas** — Prefetch (PECmd), Amcache y Shimcache: qué se ejecutó, cuántas veces y cuándo.
 5. **Actividad de usuario** — RecentDocs, LNK (LECmd), JumpLists (JLECmd), ShellBags.
 6. **Dispositivos USB** — `USBSTOR` + `setupapi.dev.log`, correlacionados con el Drive Serial de los LNK.
 7. **Logs de eventos** — Event IDs clave (4624/4648 acceso remoto, 4688 procesos, 4698 tareas, 1102 log borrado).
 8. **$UsnJrnl / $LogFile / Shadow Copies** — recuperación de ficheros borrados.
-9. **Anti-forense** — detección de *timestomping* comparando timestamps `$SI` vs `$FN`.
+9. **Anti-forense** — detección de *timestomping* (cuando el atacante falsifica las fechas de un archivo para ocultar cuándo actuó). NTFS guarda dos juegos de marcas de tiempo, `$SI` y `$FN`; el atacante suele alterar solo uno, así que compararlos revela la manipulación.
 
 ---
 
@@ -75,7 +75,7 @@ Reconstrucción de la cadena de ataque completa a partir de la evidencia:
 
 ## Análisis de memoria RAM (Volatility 3)
 
-Volcado analizado con el workflow completo: `windows.info` → `pslist`/`psscan` (diff para detectar procesos ocultos DKOM) → `pstree` (relaciones padre-hijo anómalas) → `cmdline` → `netscan` → `malfind` (código inyectado) → `hashdump`.
+Volcado analizado con el workflow completo: `windows.info` → `pslist`/`psscan` (comparar ambas listas delata procesos que un rootkit escondió del sistema pero no de la memoria cruda — técnica DKOM) → `pstree` (relaciones padre-hijo anómalas) → `cmdline` → `netscan` (conexiones de red activas) → `malfind` (código inyectado en procesos legítimos) → `hashdump`.
 
 **Proceso malicioso identificado:**
 
