@@ -116,6 +116,23 @@ Comparativa de qué preserva y qué elimina cada plataforma al reenviar una mism
 
 ---
 
+## Evidencia del laboratorio
+
+Capturas propias del análisis, tomadas durante la investigación forense.
+
+| | |
+|---|---|
+| ![Montaje del disco](dfir-listado-disco.png) | ![Ficheros sospechosos](dfir-ficheros-sospechosos.png) |
+| Montaje de la imagen en FTK Imager y recorrido del sistema de archivos | Kit de herramientas del atacante hallado en `C:\TMP` |
+| ![Registro del sistema](dfir-registro-sistema.png) | ![Artefacto de descargas](dfir-artefacto-descargas.png) |
+| Análisis de los hives del registro (Registry Explorer) | Artefacto de ejecución / descargas del atacante |
+| ![Resumen de eventos](dfir-eventos-resumen.png) | ![Hash NTLM](dfir-hash-ntlm.png) |
+| Triage de logs de eventos con Hayabusa | Extracción de hashes NTLM de los hives SAM/SYSTEM |
+| ![Cracking del hash](dfir-cracking-hash.png) | ![Validación en VirusTotal](dfir-virustotal-2.png) |
+| Crackeo del hash de la cuenta comprometida | Validación del proceso malicioso en VirusTotal |
+
+---
+
 ## Módulos relacionados
 
 - **[Analisis-de-Malware](https://github.com/juanmalbran/Analisis-de-Malware)** — YARA, IOCs y análisis de artefactos: disciplinas fuertemente solapadas.
